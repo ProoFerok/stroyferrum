@@ -648,3 +648,22 @@ select.input { background: transparent; }
 .article-more { margin-top: 40px; }
 .article-more-links { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 12px; font-size: 15px; }
 .footer-nav [aria-current="page"] { color: var(--color-neutral-600); }
+
+/* ── информационные страницы (о компании, конструктив, вопросы) ───────── */
+.article-note { padding-top: 6px; font-size: 14.5px !important; color: var(--color-neutral-700) !important; }
+.article-body a, .article-list a { color: var(--color-accent-700); text-decoration: underline; text-underline-offset: 2px; }
+.article-toc {
+  margin: 0 0 18px; padding: 18px 22px;
+  background: var(--color-neutral-100); border-left: 3px solid var(--color-accent);
+}
+.article-toc ol { margin: 10px 0 0; padding-left: 22px; display: grid; gap: 6px; font-size: 15px; }
+.article-toc a { color: var(--color-accent-700); }
+.article-h2[id] { scroll-margin-top: 90px; }
+.req-list { margin: 0; display: grid; border-top: 1px solid var(--color-divider); }
+.req-list > div {
+  display: grid; grid-template-columns: minmax(150px, 220px) 1fr; gap: 4px 20px;
+  padding: 10px 0; border-bottom: 1px solid var(--color-divider);
+}
+.req-list dt { font-family: var(--font-mono); font-size: 12.5px; color: var(--color-neutral-600); padding-top: 2px; }
+.req-list dd { margin: 0; font-size: 15px; line-height: 1.55; color: var(--color-neutral-800); }
+@media (max-width: 600px) { .req-list > div { grid-template-columns: 1fr; } }
