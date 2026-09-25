@@ -696,3 +696,21 @@ select.input { background: transparent; }
 .article-card-title { font-family: var(--font-heading); font-weight: 600; text-transform: uppercase; font-size: 19px; line-height: 1.15; color: var(--color-text); }
 .article-card-text { font-size: 14.5px; line-height: 1.55; color: var(--color-neutral-700); }
 .article-body .article-card, .article-body .article-card:hover { text-decoration: none; }
+
+/* ── статья «Этапы строительства» ─────────────────────────────────────── */
+.steps-list { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 0; }
+.steps-list > li {
+  counter-increment: step; position: relative;
+  padding: 4px 0 18px 56px; border-left: 1px solid var(--color-divider); margin-left: 18px;
+  scroll-margin-top: 90px;
+}
+.steps-list > li:last-child { border-left-color: transparent; }
+.steps-list > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute; left: -19px; top: 20px; width: 38px; height: 38px;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 13px; color: var(--color-accent-700);
+  background: var(--color-bg); border: 1px solid var(--color-accent);
+}
+.steps-list .article-h2 { margin-top: 22px; }
+.steps-list p { margin: 6px 0 0; }
