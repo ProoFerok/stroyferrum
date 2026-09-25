@@ -55,6 +55,30 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://stroyferrum.ru/bystrovozvodimye-zdaniya.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stroyferrum.ru/pristroyki.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stroyferrum.ru/sendvich-paneli-ili-proflist.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stroyferrum.ru/slovar.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://stroyferrum.ru/privacy.html</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>yearly</changefreq>
