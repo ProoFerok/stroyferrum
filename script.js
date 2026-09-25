@@ -66,7 +66,8 @@
     }
   }
 
-  const logoLink = document.querySelector(".brand");
+  // На главной логотип перезагружает страницу; на остальных — обычная ссылка.
+  const logoLink = document.querySelector('.brand[href="#top"]');
   if (logoLink) {
     logoLink.addEventListener("click", (event) => {
       event.preventDefault();

@@ -596,3 +596,55 @@ select.input { background: transparent; }
   font-size: 13.5px; line-height: 1.62; color: var(--color-neutral-700);
 }
 .legal-back { margin: 34px 0 0; font-family: var(--font-mono); font-size: 13px; }
+
+/* ── ссылки из карточек услуг на страницы услуг ───────────────────────── */
+.service-more {
+  margin-top: auto; padding-top: 12px; align-self: flex-start;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-accent-700);
+}
+
+/* ── страницы услуг ───────────────────────────────────────────────────── */
+.article { padding-block: clamp(28px, 5vw, 52px) 0; max-width: 900px; }
+.crumbs {
+  display: flex; flex-wrap: wrap; gap: 6px 10px; margin-bottom: 26px;
+  font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-600);
+}
+.crumbs a { color: var(--color-accent-700); }
+.article-head { margin-bottom: 30px; }
+.article-title {
+  font-family: var(--font-heading); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(28px, 4vw, 48px); line-height: 1.02; margin: 12px 0 18px; text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.article-lead { margin: 0; font-size: 17px; line-height: 1.66; color: var(--color-neutral-800); }
+.article-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; margin-bottom: 20px; }
+.article-photos--single { grid-template-columns: 1fr; }
+.article-photo { margin: 0; padding: 8px; }
+.article-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.article-photo figcaption { padding: 8px 2px 0; font-family: var(--font-mono); font-size: 12px; color: var(--color-neutral-600); }
+.article-body { display: grid; gap: 12px; }
+.article-body p { margin: 0; font-size: 15.5px; line-height: 1.68; color: var(--color-neutral-800); }
+.article-h2 {
+  font-family: var(--font-heading); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(21px, 2.4vw, 28px); line-height: 1.1; margin: 26px 0 4px;
+}
+.article-list { margin: 0; padding-left: 22px; display: grid; gap: 7px; }
+.article-list li { font-size: 15.5px; line-height: 1.6; color: var(--color-neutral-800); }
+.article-list li::marker { color: var(--color-accent-700); }
+.article-list strong { color: var(--color-text); font-weight: 600; }
+.faq-item { padding: 14px 0; border-top: 1px solid var(--color-divider); }
+.faq-item:last-child { border-bottom: 1px solid var(--color-divider); }
+.faq-q { font-family: var(--font-body); font-weight: 600; font-size: 16px; line-height: 1.4; margin: 0 0 6px; }
+.article-cta {
+  margin-top: 44px; padding: 26px;
+  display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: center; justify-content: space-between;
+  background: var(--color-neutral-100);
+}
+.article-cta > div { flex: 1 1 320px; }
+.article-cta-title { margin: 0 0 6px; font-family: var(--font-heading); font-weight: 600; font-size: 24px; text-transform: uppercase; }
+.article-cta-text { margin: 0; font-size: 15px; line-height: 1.6; color: var(--color-neutral-700); }
+.article-cta-text a { color: var(--color-accent-700); text-decoration: underline; text-underline-offset: 2px; }
+.article-more { margin-top: 40px; }
+.article-more-links { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 12px; font-size: 15px; }
+.footer-nav [aria-current="page"] { color: var(--color-neutral-600); }
