@@ -528,6 +528,10 @@ select.input { background: transparent; }
   width: 100%; min-height: 36px; padding: 6px 10px;
   font-family: var(--font-body); font-size: 14px; color: var(--color-text);
   background: transparent; border: 1px solid var(--color-divider); border-radius: 0; appearance: none;
+  /* appearance: none убирает системную стрелку — рисуем свою, иначе не видно, что это список */
+  padding-right: 36px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23416180' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; background-size: 12px 8px;
 }
 .config-select:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
 .config-select:focus-visible { border-color: var(--color-accent); }
