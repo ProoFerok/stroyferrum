@@ -75,6 +75,18 @@
     });
   }
 
+  // ── Меню «Услуги» в шапке: закрывать по клику вне меню и по Escape ─────
+  const navDrops = document.querySelectorAll(".nav-drop");
+  if (navDrops.length) {
+    document.addEventListener("click", (event) => {
+      navDrops.forEach((d) => { if (d.open && !d.contains(event.target)) d.open = false; });
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      navDrops.forEach((d) => { if (d.open) { d.open = false; d.querySelector("summary").focus(); } });
+    });
+  }
+
   // ── Галерея объектов: карусель + модальное окно (lightbox) ──────────────
   const gallery = document.querySelector("[data-gallery]");
   if (gallery) {
