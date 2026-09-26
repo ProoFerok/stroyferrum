@@ -780,3 +780,37 @@ select.input { background: transparent; }
 .article-card-cities { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--color-accent-700); }
 .stats-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: var(--color-accent); }
 .stats-link:hover { color: var(--color-accent-700); }
+
+/* ── выбор региона ────────────────────────────────────────────────────── */
+.region-drop { margin-left: 4px; font-size: 14px; }
+.region-drop > summary { color: var(--color-accent-700); }
+.region-pin {
+  width: 12px; height: 14px; flex: none; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M6 0a5 5 0 0 0-5 5c0 3.6 5 9 5 9s5-5.4 5-9a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M6 0a5 5 0 0 0-5 5c0 3.6 5 9 5 9s5-5.4 5-9a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.nav-drop-title { margin: 4px 16px 6px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); }
+.region-bar { background: var(--color-neutral-100); border-bottom: 1px solid var(--color-divider); }
+.region-bar[hidden] { display: none; }
+.region-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding-block: 10px; }
+.region-bar-text { margin: 0; font-size: 14px; color: var(--color-neutral-800); }
+.region-bar-links { display: flex; flex-wrap: wrap; gap: 6px; }
+.region-bar-link {
+  padding: 4px 10px; font-size: 13.5px; color: var(--color-accent-700);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.region-bar-link:hover { background: var(--color-accent); color: var(--color-bg); }
+.region-bar-close { margin-left: auto; padding: 2px 8px; font-size: 22px; line-height: 1; color: var(--color-neutral-600); background: none; border: 0; cursor: pointer; }
+.region-cities { margin: 0; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--color-accent-700); }
+.region-text ul, .region-text ol { margin: 0; }
+.region-text .faq-item p { margin: 0; }
+@media (max-width: 600px) {
+  .region-drop { order: 2; margin-left: 0; }
+  .main-nav { order: 3; width: auto; flex: 1 1 60%; }
+}
+@media (max-width: 600px) {
+  /* меню не должно вылезать за правый край, где бы ни стоял его пункт */
+  .nav-drop { position: static; }
+  .nav-drop-menu { left: 16px; right: 16px; width: auto; min-width: 0; max-width: none; }
+  .region-bar-close { margin-left: auto; align-self: flex-start; }
+}

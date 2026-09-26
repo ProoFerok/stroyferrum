@@ -75,6 +75,53 @@
     });
   }
 
+  // ── Регион: запоминаем выбор, подписываем переключатель, «местные» заголовки ──
+  // Разделы регионов (/samara/ и т.д.) сами сообщают свой регион; на общих
+  // страницах (услуги, статьи) берём сохранённый выбор. Главная stroyferrum.ru
+  // переходит в сохранённый регион ещё до отрисовки — см. <head> index.html.
+  const REGIONS = {
+    penza:                { label: "Пенза",       short: "в Пензе",       full: "в Пензе и Пензенской области" },
+    moskva:               { label: "Москва",      short: "в Москве",      full: "в Москве" },
+    "moskovskaya-oblast": { label: "Подмосковье", short: "в Подмосковье", full: "в Московской области" },
+    ryazan:               { label: "Рязань",      short: "в Рязани",      full: "в Рязани и Рязанской области" },
+    samara:               { label: "Самара",      short: "в Самаре",      full: "в Самаре и Самарской области" },
+    saransk:              { label: "Саранск",     short: "в Саранске",    full: "в Саранске и Мордовии" },
+    saratov:              { label: "Саратов",     short: "в Саратове",    full: "в Саратове и Саратовской области" },
+    tambov:               { label: "Тамбов",      short: "в Тамбове",     full: "в Тамбове и Тамбовской области" }
+  };
+  const storeRegion = (slug) => { try { localStorage.setItem("sf-region", slug); } catch (e) { /* приватный режим */ } };
+  let region = null;
+  try { region = localStorage.getItem("sf-region"); } catch (e) { region = null; }
+  if (!REGIONS[region]) region = null;
+  const regionDrop = document.querySelector(".region-drop");
+  const pageRegion = regionDrop && regionDrop.dataset.regionPage;
+  if (pageRegion && REGIONS[pageRegion]) { region = pageRegion; storeRegion(region); }
+  document.querySelectorAll("[data-region]").forEach((a) => {
+    a.addEventListener("click", () => storeRegion(a.dataset.region));
+  });
+  if (regionDrop && !pageRegion && region) {
+    const label = regionDrop.querySelector("[data-region-label]");
+    if (label) label.textContent = REGIONS[region].label;
+    regionDrop.querySelectorAll("[data-region]").forEach((a) => a.classList.toggle("is-current", a.dataset.region === region));
+  }
+  // Общие страницы: «в Пензе» в заголовке и вводном абзаце → выбранный регион.
+  // Поисковик и посетитель без выбора видят исходный пензенский текст.
+  if (!pageRegion && region && region !== "penza") {
+    const R = REGIONS[region];
+    const swap = (text) => text.replace(/в Пензе и Пензенской области/g, R.full).replace(/в Пензе и области/g, R.full).replace(/в Пензе/g, R.short);
+    document.querySelectorAll(".article-head h1, .article-head .article-lead").forEach((el) => {
+      el.childNodes.forEach((n) => { if (n.nodeType === 3) n.textContent = swap(n.textContent); });
+    });
+    if (document.querySelector(".article-head")) document.title = swap(document.title);
+  }
+  // Полоса «Вы из другого региона?» на главной — пока регион не выбран.
+  const regionBar = document.querySelector("[data-region-bar]");
+  if (regionBar) {
+    if (!region) regionBar.hidden = false;
+    const close = regionBar.querySelector("[data-region-bar-close]");
+    if (close) close.addEventListener("click", () => { storeRegion("penza"); regionBar.hidden = true; });
+  }
+
   // ── Меню «Услуги» в шапке: закрывать по клику вне меню и по Escape ─────
   const navDrops = document.querySelectorAll(".nav-drop");
   if (navDrops.length) {
@@ -272,7 +319,7 @@
       type: "Производственный цех", W: 18, L: 36, H: 6,
       roof: "Двускатная", slope: 12, bay: "6", gates: 1, gateSize: "4x4",
       clad: "Сэндвич-панели 100 мм", glaz: "Ленточные окна", crane: "Нет",
-      floors: 2, fill: "Профлист", postStep: "3", region: "III — 1,8 кПа (Пенза)",
+      floors: 2, fill: "Профлист", postStep: "3", region: "III — 1,8 кПа",
       view: "2d"
     };
     let yaw = 0.7, raf = null;
@@ -647,7 +694,7 @@
       if (has("clad")) fieldsBox.appendChild(selectField("clad", "Утепление / обшивка", ["Профлист, без утепления", "Сэндвич-панели 100 мм", "Сэндвич-панели 150 мм"]));
       if (has("glaz")) fieldsBox.appendChild(selectField("glaz", "Остекление", ["Без остекления", "Ленточные окна", "Витражное остекление"]));
       if (has("crane")) fieldsBox.appendChild(selectField("crane", "Кран-балка", ["Нет", "3,2 т", "5 т", "10 т"]));
-      if (has("region")) fieldsBox.appendChild(selectField("region", "Снеговой район", ["II — 1,2 кПа", "III — 1,8 кПа (Пенза)", "IV — 2,4 кПа", "V — 3,2 кПа"]));
+      if (has("region")) fieldsBox.appendChild(selectField("region", "Снеговой район", ["II — 1,2 кПа", "III — 1,8 кПа", "IV — 2,4 кПа", "V — 3,2 кПа"]));
     }
 
     function render() {
