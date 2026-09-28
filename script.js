@@ -1,6 +1,11 @@
 "use strict";
 
 (() => {
+  // Цель в Метрике (если счётчик подключён). Сами цели создаются в интерфейсе Метрики.
+  const goal = (name) => {
+    if (typeof window.ym === "function" && window.__ymCounterId) window.ym(window.__ymCounterId, "reachGoal", name);
+  };
+
   // «На рынке N лет» — считаем от даты регистрации ООО автоматически,
   // чтобы цифра не устаревала (ООО «Феррум Строй», ОГРН 1155837000274).
   document.querySelectorAll("[data-years-since]").forEach((el) => {
@@ -97,7 +102,7 @@
   const pageRegion = regionDrop && regionDrop.dataset.regionPage;
   if (pageRegion && REGIONS[pageRegion]) { region = pageRegion; storeRegion(region); }
   document.querySelectorAll("[data-region]").forEach((a) => {
-    a.addEventListener("click", () => storeRegion(a.dataset.region));
+    a.addEventListener("click", () => { storeRegion(a.dataset.region); goal("region"); });
   });
   if (regionDrop && !pageRegion && region) {
     const label = regionDrop.querySelector("[data-region-label]");
@@ -261,9 +266,7 @@
   // по телефону; для рекламы фиксируем цель в Метрике.
   document.querySelectorAll("[data-goal]").forEach((el) => {
     el.addEventListener("click", () => {
-      if (typeof window.ym === "function" && window.__ymCounterId) {
-        window.ym(window.__ymCounterId, "reachGoal", "contact");
-      }
+      goal("contact");
     });
   });
 
@@ -297,6 +300,11 @@
     const view2d   = config.querySelector("[data-config-2d]");
     const view3d   = config.querySelector("[data-config-3d]");
     const toggles  = config.querySelectorAll("[data-config-view]");
+    // Цель «config» — посетитель начал собирать каркас (один раз за визит страницы).
+    let configTouched = false;
+    const onConfigUse = () => { if (!configTouched) { configTouched = true; goal("config"); } };
+    config.addEventListener("input", onConfigUse);
+    config.addEventListener("change", onConfigUse);
 
     // характеристики по типам объектов: f — какие поля показываем, остальное — пределы размеров
     const T = {
